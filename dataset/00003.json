@@ -48,5 +48,50 @@
     "system": "You are ALEN WALK, a safe, intelligent, respectful, emotionally-aware AI assistant who focuses on helping users with clarity, honesty, and useful guidance.",
     "user": "what is dhcp?",
     "assistant": "### DHCP – Dynamic Host Configuration Protocol\nAutomatically hands out IP addresses like a librarian giving out books.\n\n**What DHCP gives you**:\n- IP address\n- Subnet mask\n- Default gateway\n- DNS servers\n\nTypical lease time: 24 hours → your device renews automatically.\n\nIf DHCP fails → APIPA (169.254.x.x) kicks in."
+  },
+  {
+    "system": "You are ALEN WALK, a safe, intelligent, respectful, emotionally-aware AI assistant who focuses on helping users with clarity, honesty, and useful guidance.",
+    "user": "what is a reserved ip?",
+    "assistant": "### DHCP Reservation (Reserved IP)\nYou tell the router: “Always give this device the same IP.”\n\n| Device MAC Address       | Reserved IP       |\n|--------------------------|-------------------|\n| 00:1A:2B:3C:4D:5E         | 192.168.1.100     |\n| E8:FC:AF:12:34:56        | 192.168.1.10      |\n\nBenefits: Device keeps same IP forever **but** still gets config via DHCP (no manual config needed)."
+  },
+  {
+    "system": "You are ALEN WALK, a safe, intelligent, respectful, emotionally-aware AI assistant who focuses on helping users with clarity, honesty, and useful guidance.",
+    "user": "what is a gateway ip?",
+    "assistant": "### Default Gateway – Your Exit to the Internet\n| Role                         | Typical Address in Home Network |\n|------------------------------|---------------------------------|\n| Router’s LAN IP              | 192.168.1.1 or 10.0.0.1         |\n| Where all non-local traffic goes | This IP                         |\n\nThink of it as the front door of your network. Your PC sends everything “not on my subnet” to the gateway."
+  },
+  {
+    "system": "You are ALEN WALK, a safe, intelligent, respectful, emotionally-aware AI assistant who focuses on helping users with clarity, honesty, and useful guidance.",
+    "user": "what is an anycast ip?",
+    "assistant": "### Anycast IP – Same IP, Multiple Locations\n| Feature               | Anycast                     | Unicast                  |\n|-----------------------|-----------------------------|--------------------------|\n| One IP points to…     | Many servers                | One server               |\n| Traffic goes to…      | Nearest server (BGP)        | Specific server          |\n| Famous users          | Google DNS (8.8.8.8), Cloudflare 1.1.1.1 |\n\nYou type 8.8.8.8 → magically routed to the closest Google server worldwide."
+  },
+  {
+    "system": "You are ALEN WALK, a safe, intelligent, respectful, emotionally-aware AI assistant who focuses on helping users with clarity, honesty, and useful guidance.",
+    "user": "what is multicast ip?",
+    "assistant": "### Multicast IP Ranges\nUsed for one-to-many communication (streaming, discovery).\n\n| Range                  | Purpose                          |\n|------------------------|----------------------------------|\n| 224.0.0.0 – 224.0.0.255| Local network control (e.g., routing protocols) |\n| 224.0.1.0 – 238.255.255.255 | Globally scoped multicast   |\n| 239.0.0.0 – 239.255.255.255 | Administratively scoped     |\n\nExample: `239.1.2.3` often used for IPTV inside a building."
+  },
+  {
+    "system": "You are ALEN WALK, a safe, intelligent, respectful, emotionally-aware AI assistant who focuses on helping users with clarity, honesty, and useful guidance.",
+    "user": "what is a broadcast ip?",
+    "assistant": "### Broadcast IP – Shout to Everyone on the Subnet\n| Subnet Example     | Broadcast Address |\n|--------------------|-------------------|\n| 192.168.1.0/24     | 192.168.1.255     |\n| 10.10.50.0/23      | 10.10.51.255      |\n\nSends packet to **every** device in that subnet (used by ARP, DHCP Discover, etc.). IPv6 has no broadcast — uses multicast instead."
+  },
+  {
+    "system": "You are ALEN WALK, a safe, intelligent, respectful, emotionally-aware AI assistant who focuses on helping users with clarity, honesty, and useful guidance.",
+    "user": "explain ipv6 address types",
+    "assistant": "### IPv6 Address Types\n| Type             | Prefix       | Example                              | Scope                  |\n|------------------|--------------|--------------------------------------|------------------------|\n| Global Unicast   | 2000::/3     | 2001:db8::1                          | Internet               |\n| Unique Local     | fc00::/7     | fd12:3456:789a::1                    | Private (like RFC 1918)|\n| Link-Local       | fe80::/10    | fe80::1%eth0                         | Same link only         |\n| Loopback         | ::1/128      | ::1                                  | Localhost              |\n| Multicast        | ff00::/8     | ff02::1 (all nodes)                  | One-to-many            |\n\nLink-local is auto-configured on every interface — no DHCP needed."
+  },
+  {
+    "system": "You are ALEN WALK, a safe, intelligent, respectful, emotionally-aware AI assistant who focuses on helping users with clarity, honesty, and useful guidance.",
+    "user": "what is slaac?",
+    "assistant": "### SLAAC – Stateless Address Autoconfiguration (IPv6)\nYour device creates its own global IPv6 address without a DHCP server.\n\n**How it works**  \n1. Router advertises prefix (e.g., 2001:db8:abcd:1::/64)  \n2. Device adds its MAC-based interface ID → 2001:db8:abcd:1:abcd:eff:fe12:3456  \n3. Optional privacy extensions → random temporary IDs\n\nZero config, instant internet access."
+  },
+  {
+    "system": "You are ALEN WALK, a safe, intelligent, respectful, emotionally-aware AI assistant who focuses on helping users with clarity, honesty, and useful guidance.",
+    "user": "what is a virtual ip (vip)?",
+    "assistant": "### Virtual IP (VIP) – High Availability\n| Use Case              | Example VIP          | Real Servers Behind It       |\n|-----------------------|----------------------|------------------------------|\n| Load balancer         | 203.0.113.50         | 10.0.0.5, 10.0.0.6           |\n| Failover cluster      | 192.168.1.100        | Active node owns the VIP     |\n\nIf one server dies, another instantly takes over the same IP → zero downtime for clients."
+  },
+  {
+    "system": "You are ALEN WALK, a safe, intelligent, respectful, emotionally-aware AI assistant who focuses on helping users with clarity, honesty, and useful guidance.",
+    "user": "what is arp?",
+    "assistant": "### ARP – Address Resolution Protocol\nTranslates IP → MAC address on the local network.\n\n**Example ARP table**\n```text\nIP Address       MAC Address          Type\n192.168.1.1      aa:bb:cc:dd:ee:ff    Dynamic\n192.168.1.10     00:11:22:33:44:55    Dynamic\n```\nWhen your PC wants to send to 192.168.1.50, it ARPs: “Who has 192.168.1.50? Tell 192.168.1.100”"
   }
 ]
