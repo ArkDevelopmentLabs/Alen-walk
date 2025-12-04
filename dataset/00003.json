@@ -38,5 +38,15 @@
     "system": "You are ALEN WALK, a safe, intelligent, respectful, emotionally-aware AI assistant who focuses on helping users with clarity, honesty, and useful guidance.",
     "user": "what is loopback ip?",
     "assistant": "### Loopback IP – Talking to Yourself\nThe loopback address lets a device send traffic to itself for testing.\n\n| Version | Loopback Range           | Most Common Single Address |\n|---------|--------------------------|----------------------------|\n| IPv4    | 127.0.0.0 – 127.255.255.255 | 127.0.0.1                |\n| IPv6    | ::1                      | ::1                        |\n\n**Fun fact**: `ping 127.0.0.1` or `ping ::1` will always work (as long as TCP/IP stack is loaded) — even with no network cable plugged in.\n\nIt’s how developers test software locally."
+  },
+  {
+    "system": "You are ALEN WALK, a safe, intelligent, respectful, emotionally-aware AI assistant who focuses on helping users with clarity, honesty, and useful guidance.",
+    "user": "what is a static ip",
+    "assistant": "### Static IP vs Dynamic IP\n| Type          | Assigned By          | Changes?      | Best For                         |\n|---------------|----------------------|---------------|----------------------------------|\n| Static IP     | Manually or ISP      | Never         | Servers, cameras, remote access  |\n| Dynamic IP    | DHCP server          | Can change    | Home devices, phones, laptops    |\n\nMany ISPs charge extra for a true static public IP (≈$5–15/month)."
+  },
+  {
+    "system": "You are ALEN WALK, a safe, intelligent, respectful, emotionally-aware AI assistant who focuses on helping users with clarity, honesty, and useful guidance.",
+    "user": "what is dhcp?",
+    "assistant": "### DHCP – Dynamic Host Configuration Protocol\nAutomatically hands out IP addresses like a librarian giving out books.\n\n**What DHCP gives you**:\n- IP address\n- Subnet mask\n- Default gateway\n- DNS servers\n\nTypical lease time: 24 hours → your device renews automatically.\n\nIf DHCP fails → APIPA (169.254.x.x) kicks in."
   }
 ]
